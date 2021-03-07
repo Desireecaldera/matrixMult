@@ -51,12 +51,8 @@ void *matrixThread(void *param) {
         sum += cell->a[cell->i][index] * cell->b[index][cell->j];
     }
     //assiging result to a cell in C matrix
-    // *(*(matrix +0) + 0)
-    // *( *(cell->c+cell->i) + (cell->j) ) = sum;
     cell->c[cell->i][cell->j] = sum;
-    //printf("ROW: %d COL: %d SUM: %d\n", cell->i, cell->j, sum);
 
-    //TODO: implement
 
     free(cell);
 
@@ -92,8 +88,6 @@ void allocateAndLoadMatrices(int ***a, int ***b, int ***c, int *m, int *k, int *
     for (int l = 0; l < *m; l++) {
         *((*c) + l) = malloc(*n * sizeof(int));
     }
-
-    // TODO: implement(double check)
 }
 
 void loadMatrix(int ***matrix, int m, int n) {
@@ -104,8 +98,6 @@ void loadMatrix(int ***matrix, int m, int n) {
             *(*((*matrix) + row) + col) = test;
         }
     }
-
-    // TODO: implement(double check)
 }
 
 void freeMatrix(int **matrix, int m) {
@@ -113,7 +105,6 @@ void freeMatrix(int **matrix, int m) {
         free(*(matrix + row));
     }
 
-    // TODO: implement
 }
 
 pthread_t **multiply(int **a, int **b, int **c, int m, int k, int n) {
@@ -141,9 +132,6 @@ pthread_t **multiply(int **a, int **b, int **c, int m, int k, int n) {
     //*(*(matrix +0) + 0) is first element of the row
     //*(*(c +i) + j) +=    *(*(a +i) + k)  times  *(*(b +k) + j)
 
-
-    //TODO: implement (work on)
-
     return tids;
 }
 
@@ -155,7 +143,6 @@ pthread_t **alloc_tids(int m, int n) {
         *(tids + i) = malloc(n * sizeof(pthread_t));
     }
 
-    // TODO: implement (double check)
 
     return tids;
 }
@@ -164,7 +151,6 @@ void free_tids(pthread_t **tids, int m) {
     for (int row = 0; row < m; row++) {
         free(*(tids + row));
     }
-    // TODO: implement
 }
 
 void join(pthread_t **tids, int m, int n) {
@@ -173,7 +159,6 @@ void join(pthread_t **tids, int m, int n) {
             pthread_join(*(*(tids + row) + col), NULL);
         }
     }
-    // TODO: implement
 }
 
 void displayMatrix(int **matrix, int m, int n) {
